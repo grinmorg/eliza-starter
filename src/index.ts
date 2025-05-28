@@ -10,6 +10,7 @@ import {
 import { bootstrapPlugin } from "@elizaos/plugin-bootstrap";
 import { createNodePlugin } from "@elizaos/plugin-node";
 import { solanaPlugin } from "@elizaos/plugin-solana";
+import { twitterImagePlugin } from "./plugins/twitter-image-plugin.js";
 import fs from "fs";
 import net from "net";
 import path from "path";
@@ -60,6 +61,7 @@ export function createAgent(
       bootstrapPlugin,
       nodePlugin,
       character.settings?.secrets?.WALLET_PUBLIC_KEY ? solanaPlugin : null,
+      (character.clients as any[])?.includes("twitter") ? twitterImagePlugin : null,
     ].filter(Boolean),
     providers: [],
     actions: [],
